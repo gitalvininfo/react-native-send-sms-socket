@@ -10,7 +10,7 @@ export default function App() {
   const [time, setTime] = useState(null);
 
   const [smsServiceAvailable, setSmsServiceAvailable] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState(['09456980301, 09303896630']);
+  const [phoneNumber, setPhoneNumber] = useState(['09456980302, 09303896632']);
   const [message, setMessage] = useState('you have appointment');
 
   const socket = io(socketEndpoint, {
