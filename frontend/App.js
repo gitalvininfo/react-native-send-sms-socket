@@ -3,14 +3,14 @@ import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import io from "socket.io-client";
 import * as SMS from 'expo-sms';
 // Replace this URL with your own socket-io host, or start the backend locally
-const socketEndpoint = "http://192.168.43.144:3000";
+const socketEndpoint = "http://192.168.43.144:3001";
 
 export default function App() {
   const [hasConnection, setConnection] = useState(false);
   const [time, setTime] = useState(null);
 
   const [smsServiceAvailable, setSmsServiceAvailable] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState(['09456980302, 09303896632']);
+  const [phoneNumber, setPhoneNumber] = useState(['09456980301']);
   const [message, setMessage] = useState('you have appointment');
 
   const socket = io(socketEndpoint, {
@@ -26,8 +26,14 @@ export default function App() {
 
     socket.on("time-msg", (data) => {
       setTime(new Date(data.time).toString());
-      onComposeSms();
-      console.log('time msg')
+      // onComposeSms();
+      console.log('from mobile app')
+    });
+    
+    socket.on("webappmobile", (data) => {
+      // setTime(new Date(data.time).toString());
+      // onComposeSms();
+      console.log('from web app')
     });
 
     return function didUnmount() {
